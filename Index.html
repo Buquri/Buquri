@@ -59,3 +59,194 @@
 
 </body>
 </html>
+/* ძირითადი სტილები და CSS ცვლადები */
+:root {
+    /* ფანჯრის ძირითადი ზომები (შეგიძლიათ შეცვალოთ) */
+    --window-width: 45vw; /* ეკრანის სიგანის 45% */
+    --window-height: 18vh; /* ეკრანის სიმაღლის 18% */
+    --window-margin: 1vw; /* ფანჯრებს შორის მანძილი */
+    --window-bg-color: #e0e0e0;
+    --window-border-color: #ccc;
+    --window-text-color: #333;
+
+    /* მენიუს ღილაკის ფერები */
+    --menu-icon-color: #333;
+
+    /* Sidebar-ის ფერები */
+    --sidebar-bg-color: #333;
+    --sidebar-text-color: white;
+    --sidebar-hover-color: #555;
+}
+
+body {
+    margin: 0;
+    font-family: sans-serif;
+    display: flex;
+    justify-content: center; /* ცენტრირება ჰორიზონტალურად */
+    align-items: flex-start; /* ზევით გასწორება ვერტიკალურად */
+    min-height: 100vh; /* მთელი ეკრანის სიმაღლე */
+    background-color: #f0f0f0;
+    overflow-x: hidden; /* თავიდან აიცილეთ ჰორიზონტალური სქროლი */
+    position: relative; /* საჭიროა მენიუს ღილაკისთვის და Sidebar-ისთვის */
+}
+
+.main-content {
+    display: flex;
+    flex-wrap: wrap; /* საჭიროა, რომ კონტეინერები ერთმანეთის გვერდით იყვნენ */
+    justify-content: center; /* ფანჯრების ცენტრირება */
+    gap: var(--window-margin); /* კონტეინერებს შორის მანძილი */
+    width: 100%; /* მთელი სიგანე */
+    padding: 10px; /* ცოტა შიდა დაშორება */
+    box-sizing: border-box; /* padding-ის ჩართვა სიგანეში */
+}
+
+/* კონტეინერები მარცხნივ და მარჯვნივ */
+.container-left,
+.container-right {
+    display: flex;
+    flex-direction: column; /* ვერტიკალურად განლაგება */
+    align-items: center; /* ცენტრირება კონტეინერში */
+    width: 48%; /* თითოეული კონტეინერის სიგანე, რათა ერთმანეთის გვერდით იყვნენ */
+    max-width: 250px; /* მაქსიმალური სიგანე დიდ ეკრანებზე */
+    gap: var(--window-margin); /* ფანჯრებს შორის მანძილი კონტეინერში */
+}
+
+/* ფანჯრების სტილი */
+.window {
+    width: var(--window-width);
+    height: var(--window-height);
+    background-color: var(--window-bg-color);
+    border: 1px solid var(--window-border-color);
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2em;
+    color: var(--window-text-color);
+    box-sizing: border-box;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+    flex-shrink: 0; /* არ შემცირდეს, თუ ადგილი ცოტაა */
+}
+
+/* ********** მენიუს ღილაკი ********** */
+.menu-icon {
+    position: fixed; /* ეკრანზე ფიქსირებული */
+    top: 15px;
+    left: 15px;
+    width: 30px;
+    height: 24px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    z-index: 1000; /* Sidebar-ზე მაღლა */
+}
+
+.menu-icon span {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background-color: var(--menu-icon-color);
+    border-radius: 2px;
+}
+
+/* ********** Sidebar ********** */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -60%; /* თავდაპირველად ეკრანიდან გასული */
+    width: 60%; /* ნახევარ ეკრანზე ფანჯრების ჩამონათვალი */
+    height: 100%;
+    background-color: var(--sidebar-bg-color);
+    color: var(--sidebar-text-color);
+    padding: 20px 0;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.5);
+    transition: left 0.3s ease-in-out; /* ანიმაცია გამოჩენისას */
+    z-index: 999; /* მენიუს ღილაკის ქვემოთ */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* ცენტრირება */
+}
+
+.sidebar.active {
+    left: 0; /* გამოჩენისას შემოდის ეკრანზე */
+}
+
+.sidebar h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    text-align: center;
+    color: var(--sidebar-text-color);
+}
+
+.sidebar-item {
+    color: var(--sidebar-text-color);
+    text-decoration: none;
+    padding: 15px 20px;
+    display: block;
+    width: 80%; /* ელემენტების სიგანე Sidebar-ში */
+    text-align: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: background-color 0.2s ease;
+}
+
+.sidebar-item:last-child {
+    border-bottom: none;
+}
+
+.sidebar-item:hover {
+    background-color: var(--sidebar-hover-color);
+}
+
+/* ********** ცალკეული ფანჯრის კონტროლი (ნიმუშები) ********** */
+/* ფანჯარა 1 - მაგალითად, განსხვავებული ფერი */
+.window-1 {
+    background-color: #ffcccc;
+}
+
+/* ფანჯარა 3 - მაგალითად, ცოტა დიდი ზომა */
+.window-3 {
+    height: calc(var(--window-height) * 1.2); /* 20% უფრო მაღალი */
+    width: calc(var(--window-width) * 1.1); /* 10% უფრო ფართო */
+}
+
+/* ფანჯარა 7 - მაგალითად, მომრგვალებული კუთხეები */
+.window-7 {
+    border-radius: 50%; /* წრიული ფორმა */
+    aspect-ratio: 1 / 1; /* თანაბარი სიგანე/სიმაღლე */
+    width: var(--window-width); /* სიგანე იგივე */
+    height: var(--window-width); /* სიმაღლე იგივე, რაც სიგანე */
+    /* თუ წრეს აკეთებთ, შეიძლება დაგჭირდეთ flex-shrink: 0; დამატება, რომ არ გატყდეს */
+}
+
+/* მედია ქუერი დიდ ეკრანებზე გამართული ჩვენებისთვის (დესკტოპი/ტაბლეტი) */
+@media (min-width: 768px) {
+    .main-content {
+        justify-content: center; /* ცენტრში განლაგება */
+        flex-direction: row; /* კონტეინერები ჰორიზონტალურად */
+        max-width: 1000px; /* მაქსიმალური სიგანე დესკტოპზე */
+    }
+
+    .container-left,
+    .container-right {
+        width: 45%; /* კონტეინერების სიგანე */
+        max-width: 400px; /* მაქსიმალური სიგანე */
+    }
+
+    .window {
+        width: 100%; /* ფანჯრები იკავებენ კონტეინერის სრულ სიგანეს */
+        height: 150px; /* ფიქსირებული სიმაღლე დესკტოპზე */
+        /* შეგიძლიათ აქაც გამოიყენოთ CSS ცვლადები */
+    }
+
+    .sidebar {
+        /* Sidebar არ გამოჩნდება დიდ ეკრანებზე, თუ არ დაამატებთ აქ სტილს */
+        display: none;
+    }
+
+    .menu-icon {
+        /* მენიუს ღილაკიც არ გამოჩნდება დიდ ეკრანებზე */
+        display: none;
+    }
+}
+

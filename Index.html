@@ -1,1 +1,61 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ჩემი მობილური ვებგვერდი</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
+    <div class="menu-icon" id="menuIcon">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <div class="sidebar" id="sidebar">
+        <h2>ფანჯრების ჩამონათვალი</h2>
+        <a href="#" class="sidebar-item">ფანჯარა 1</a>
+        <a href="#" class="sidebar-item">ფანჯარა 2</a>
+        <a href="#" class="sidebar-item">ფანჯარა 3</a>
+        <a href="#" class="sidebar-item">ფანჯარა 4</a>
+        <a href="#" class="sidebar-item">ფანჯარა 5</a>
+        </div>
+
+    <div class="main-content">
+        <div class="container-left">
+            <div class="window window-1">ფანჯარა 1</div>
+            <div class="window window-2">ფანჯარა 2</div>
+            <div class="window window-3">ფანჯარა 3</div>
+            <div class="window window-4">ფანჯარა 4</div>
+            <div class="window window-5">ფანჯარა 5</div>
+        </div>
+        <div class="container-right">
+            <div class="window window-6">ფანჯარა 6</div>
+            <div class="window window-7">ფანჯარა 7</div>
+            <div class="window window-8">ფანჯარა 8</div>
+            <div class="window window-9">ფანჯარა 9</div>
+            <div class="window window-10">ფანჯარა 10</div>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript გვერდითა პანელის ფუნქციონალობისთვის
+        document.getElementById('menuIcon').addEventListener('click', function() {
+            document.getElementById('sidebar').classList.toggle('active');
+        });
+
+        // თუ გსურთ, რომ Sidebar დაიხუროს ეკრანზე დაჭერისას, როდესაც ის ღიაა
+        document.addEventListener('click', function(event) {
+            const sidebar = document.getElementById('sidebar');
+            const menuIcon = document.getElementById('menuIcon');
+
+            if (sidebar.classList.contains('active') && !sidebar.contains(event.target) && !menuIcon.contains(event.target)) {
+                sidebar.classList.remove('active');
+            }
+        });
+    </script>
+
+</body>
+</html>

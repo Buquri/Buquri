@@ -12,8 +12,8 @@
             --window-width: 45vw; /* ეკრანის სიგანის 45% */
             --window-height: 18vh; /* ეკრანის სიმაღლის 18% */
             --window-margin: 1vw; /* ფანჯრებს შორის მანძილი */
-            --window-bg-color: #e0e0e0;
-            --window-border-color: #ccc;
+            --window-bg-color: #e0e0e0; /* ეს იქნება გადაწერილი ქვემოთ */
+            --window-border-color: #ccc; /* ეს იქნება გადაწერილი ქვემოთ */
             --window-text-color: #333;
 
             /* მენიუს ღილაკის ფერები */
@@ -58,12 +58,10 @@
             gap: var(--window-margin); /* ფანჯრებს შორის მანძილი კონტეინერში */
         }
 
-        /* ფანჯრების სტილი */
+        /* ფანჯრების ძირითადი სტილი - აქ არ ვუთითებთ ფერებსა და ჩარჩოებს, რადგან თითოეულს ცალკე მივანიჭებთ */
         .window {
             width: var(--window-width);
             height: var(--window-height);
-            background-color: var(--window-bg-color);
-            border: 1px solid var(--window-border-color);
             border-radius: 8px;
             display: flex;
             justify-content: center;
@@ -73,6 +71,8 @@
             box-sizing: border-box;
             box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
             flex-shrink: 0; /* არ შემცირდეს, თუ ადგილი ცოტაა */
+            text-align: center; /* ტექსტის ცენტრირება */
+            padding: 5px; /* შიდა დაშორება ტექსტისთვის */
         }
 
         /* ********** მენიუს ღილაკი ********** */
@@ -145,25 +145,100 @@
             background-color: var(--sidebar-hover-color);
         }
 
-        /* ********** ცალკეული ფანჯრის კონტროლი (ნიმუშები) ********** */
-        /* ფანჯარა 1 - მაგალითად, განსხვავებული ფერი */
-        .window-1 {
-            background-color: #ffcccc;
-        }
+        /* ********** ცალკეული ფანჯრის სტილები (განსხვავებული ფერები და ჩარჩოები) ********** */
+        .window-1 { background-color: #FFCDD2; border: 2px solid #D32F2F; } /* წითელი */
+        .window-2 { background-color: #E1BEE7; border: 2px solid #7B1FA2; } /* იასამნისფერი */
+        .window-3 { background-color: #C5CAE9; border: 2px solid #303F9F; } /* ლურჯი */
+        .window-4 { background-color: #BBDEFB; border: 2px solid #1976D2; } /* ღია ლურჯი */
+        .window-5 { background-color: #B2EBF2; border: 2px solid #0097A7; } /* ცისფერი */
+        .window-6 { background-color: #C8E6C9; border: 2px solid #388E3C; } /* მწვანე */
+        .window-7 { background-color: #FFECB3; border: 2px solid #FFA000; } /* ნარინჯისფერი */
+        .window-8 { background-color: #FFE0B2; border: 2px solid #F57C00; } /* ღია ნარინჯისფერი */
+        .window-9 { background-color: #FFCCBC; border: 2px solid #E64A19; } /* წითელ-ნარინჯისფერი */
+        .window-10 { background-color: #D7CCC8; border: 2px solid #6D4C41; } /* ყავისფერი */
 
-        /* ფანჯარა 3 - მაგალითად, ცოტა დიდი ზომა */
-        .window-3 {
-            height: calc(var(--window-height) * 1.2); /* 20% უფრო მაღალი */
-            width: calc(var(--window-width) * 1.1); /* 10% უფრო ფართო */
-        }
+        /* მედია ქუერი დიდ ეკრანებზე გამართული ჩვენებისთვის (დესკტოპი/ტაბლეტი) */
+        @media (min-width: 768px) {
+            .main-content {
+                justify-content: center; /* ცენტრში განლაგება */
+                flex-direction: row; /* კონტეინერები ჰორიზონტალურად */
+                max-width: 1000px; /* მაქსიმალური სიგანე დესკტოპზე */
+            }
 
-        /* ფანჯარა 7 - მაგალითად, მომრგვალებული კუთხეები */
-        .window-7 {
-            border-radius: 50%; /* წრიული ფორმა */
-            aspect-ratio: 1 / 1; /* თანაბარი სიგანე/სიმაღლე */
-            width: var(--window-width); /* სიგანე იგივე */
-            height: var(--window-width); /* სიმაღლე იგივე, რაც სიგანე */
-            /* თუ წრეს აკეთებთ, შეიძლება დაგჭირდეთ flex-shrink: 0; დამატება, რომ არ გატყდეს */
-        }
+            .container-left,
+            .container-right {
+                width: 45%; /* კონტეინერების სიგანე */
+                max-width: 400px; /* მაქსიმალური სიგანე */
+            }
 
-        /* მედია ქ
+            .window {
+                width: 100%; /* ფანჯრები იკავებენ კონტეინერის სრულ სიგანეს */
+                height: 150px; /* ფიქსირებული სიმაღლე დესკტოპზე */
+                /* შეგიძლიათ აქაც გამოიყენოთ CSS ცვლადები */
+            }
+
+            .sidebar {
+                /* Sidebar არ გამოჩნდება დიდ ეკრანებზე, თუ არ დაამატებთ აქ სტილს */
+                display: none;
+            }
+
+            .menu-icon {
+                /* მენიუს ღილაკიც არ გამოჩნდება დიდ ეკრანებზე */
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="menu-icon" id="menuIcon">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <div class="sidebar" id="sidebar">
+        <h2>ფანჯრების ჩამონათვალი</h2>
+        <a href="#" class="sidebar-item">ფანჯარა 1</a>
+        <a href="#" class="sidebar-item">ფანჯარა 2</a>
+        <a href="#" class="sidebar-item">ფანჯარა 3</a>
+        <a href="#" class="sidebar-item">ფანჯარა 4</a>
+        <a href="#" class="sidebar-item">ფანჯარა 5</a>
+        </div>
+
+    <div class="main-content">
+        <div class="container-left">
+            <div class="window window-1">ფანჯარა 1</div>
+            <div class="window window-2">ფანჯარა 2</div>
+            <div class="window window-3">ფანჯარა 3</div>
+            <div class="window window-4">ფანჯარა 4</div>
+            <div class="window window-5">ფანჯარა 5</div>
+        </div>
+        <div class="container-right">
+            <div class="window window-6">ფანჯარა 6</div>
+            <div class="window window-7">ფანჯარა 7</div>
+            <div class="window window-8">ფანჯარა 8</div>
+            <div class="window window-9">ფანჯარა 9</div>
+            <div class="window window-10">ფანჯარა 10</div>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript გვერდითა პანელის ფუნქციონალობისთვის
+        document.getElementById('menuIcon').addEventListener('click', function() {
+            document.getElementById('sidebar').classList.toggle('active');
+        });
+
+        // თუ გსურთ, რომ Sidebar დაიხუროს ეკრანზე დაჭერისას, როდესაც ის ღიაა
+        document.addEventListener('click', function(event) {
+            const sidebar = document.getElementById('sidebar');
+            const menuIcon = document.getElementById('menuIcon');
+
+            if (sidebar.classList.contains('active') && !sidebar.contains(event.target) && !menuIcon.contains(event.target)) {
+                sidebar.classList.remove('active');
+            }
+        });
+    </script>
+
+</body>
+</html>
